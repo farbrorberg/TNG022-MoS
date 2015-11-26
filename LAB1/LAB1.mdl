@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.10"
+    ComputedModelVersion    "1.12"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "danbo324"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Nov 26 09:42:08 2015"
-  RTWModifiedTimeStamp	  0
-  ModelVersionFormat	  "1.%<AutoIncrement:10>"
+  LastModifiedDate	  "Thu Nov 26 11:30:03 2015"
+  RTWModifiedTimeStamp	  370437323
+  ModelVersionFormat	  "1.%<AutoIncrement:12>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -667,7 +667,7 @@ Model {
   }
   System {
     Name		    "LAB1"
-    Location		    [604, 83, 1910, 1127]
+    Location		    [2, 82, 1902, 1147]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -686,7 +686,7 @@ Model {
       BlockType		      Clock
       Name		      "Clock"
       SID		      22
-      Position		      [245, 600, 265, 620]
+      Position		      [245, 595, 265, 615]
       Decimation	      "10"
     }
     Block {
@@ -1000,7 +1000,6 @@ Model {
     Line {
       SrcBlock		      "Clock"
       SrcPort		      1
-      Points		      [5, 0; 0, -5]
       DstBlock		      "To Workspace1"
       DstPort		      1
     }

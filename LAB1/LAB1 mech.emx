@@ -7,36 +7,14 @@
     <Version>4.2</Version>
 <IsMainModel>0</IsMainModel>
   <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>H:\TNG022_MoS\LAB1\LAB1.emx</LibraryPath>
-  <TimeStamp>2015-11-26 09:59:26</TimeStamp>
+    <LibraryPath>H:\TNG022_MoS\LAB1\LAB1 mech.emx</LibraryPath>
+  <TimeStamp>2015-11-26 11:41:10</TimeStamp>
 </Description>
 </Information>';
  type Mainmodel
  end;
  implementation bg
   submodels
-   Armature 488 464
-    description '<Description>
- <LibraryPath>Bond Graph\R.emx</LibraryPath>
- <Version>No Version Info</Version>
- <IsMainModel>0</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
- <AllowLibraryUpdate>True</AllowLibraryUpdate>
-</Description>';
-    type R
-     ports
-      power in p;
-    end;
-    icon bg bottom
-     figures
-      text 'R' 488 464 18 bold;
-    end;
-    implementation eq
-parameters
-	real r = 0.8;
-equations
-	p.e = r * p.f;
-implementation_end;
    Friction 720 280
     description '<Description>
  <LibraryPath>Bond Graph\R.emx</LibraryPath>
@@ -58,61 +36,6 @@ parameters
 	real r = 0.00012;
 equations
 	p.e = r * p.f;
-implementation_end;
-   GY 576 376
-    description '<Information>
- <Description>
-    <Version>4.2</Version>
-<IsMainModel>1</IsMainModel>
-  <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>Bond Graph\GY.emx</LibraryPath>
-  <TimeStamp>2011-11-29 15:53:45</TimeStamp>
-</Description>
-</Information>';
-    type GY
-     ports
-      power in p1;
-      power out p2;
-     restrictions
-      causality constraint equal p1 p2;
-    end;
-    icon bg bottom
-     figures
-      text 'GY' 576 376 18 bold;
-    end;
-    implementation eq
-parameters
-	real r = 0.056;
-equations
-	p1.e = r * p2.f;
-	p2.e = r * p1.f;
-implementation_end;
-   Inductance 432 280
-    description '<Description>
- <LibraryPath>Bond Graph\I.emx</LibraryPath>
- <Version>No Version Info</Version>
- <IsMainModel>0</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
- <AllowLibraryUpdate>True</AllowLibraryUpdate>
-   <Title></Title>
-</Description>';
-    type I
-     ports
-      power in p;
-      signal out state;
-     restrictions
-      causality preferred in p;
-    end;
-    icon bg right
-     figures
-      text 'I' 432 280 18 bold;
-    end;
-    implementation eq
-parameters
-	real i = 0.0039;
-equations
-    state = int(p.e);
-    p.f = state / i;
 implementation_end;
    Load 840 376
     description '<Description>
@@ -139,33 +62,6 @@ parameters
 equations
     state = int(p.e);
     p.f = state / i;
-implementation_end;
-   OneJunction 432 376
-    description '<Information>
- <Description>
-    <Version>4.2</Version>
-<IsMainModel>1</IsMainModel>
-  <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>Bond Graph\OneJunction.emx</LibraryPath>
-  <TimeStamp>2011-11-29 16:17:51</TimeStamp>
-</Description>
-</Information>';
-    knot OneJunction
-     ports
-      power knot duplicatable none p [1];
-      signal knot out flow [1];
-     restrictions
-      causality constraint one_out p;
-    end;
-    icon bg
-     figures
-      text '1' 432 376 18 bold;
-    end;
-    implementation eq
-equations
-	sum (direct (p.e)) = 0;
-	equal (collect (p.f));
-	flow = first (p.f);
 implementation_end;
    OneJunction1 720 376
     description '<Information>
@@ -194,7 +90,7 @@ equations
 	equal (collect (p.f));
 	flow = first (p.f);
 implementation_end;
-   Se 296 376
+   Se 576 376
     description '<Information>
  <Description>
     <Version>4.2</Version>
@@ -212,7 +108,7 @@ implementation_end;
     end;
     icon bg bottom
      figures
-      text 'Se' 296 376 18 bold;
+      text 'Se' 576 376 18 bold;
     end;
     implementation eq
 parameters
@@ -223,38 +119,11 @@ equations
 	p.e = effort;
 	flow = p.f;
 implementation_end;
-   Terminal 376 464
-    description '<Description>
- <LibraryPath>Bond Graph\R.emx</LibraryPath>
- <Version>No Version Info</Version>
- <IsMainModel>0</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
- <AllowLibraryUpdate>True</AllowLibraryUpdate>
-</Description>';
-    type R
-     ports
-      power in p;
-    end;
-    icon bg bottom
-     figures
-      text 'R' 376 464 18 bold;
-    end;
-    implementation eq
-parameters
-	real r = 0.35;
-equations
-	p.e = r * p.f;
-implementation_end;
   end;
   connections
-   Se\p => OneJunction\p;
-   OneJunction\p => Terminal\p;
-   OneJunction\p => GY\p1;
-   OneJunction\p => Armature\p;
-   OneJunction\p => Inductance\p;
-   GY\p2 => OneJunction1\p;
    OneJunction1\p => Load\p;
    OneJunction1\p => Friction\p;
+   Se\p => OneJunction1\p;
   end;
  implementation_end;
 ]]>
@@ -361,7 +230,7 @@ implementation_end;
        <Minimum>-20</Minimum>
        <Maximum>180</Maximum>
        <Linear>true</Linear>
-       <Scaling>1</Scaling>
+       <Scaling>0</Scaling>
        <Label>p.f</Label>
       </Axis>
      </YAxes>
@@ -546,9 +415,6 @@ implementation_end;
    <WriteFilename></WriteFilename>
    <DoWrite>false</DoWrite>
    <ExportVariables>
-     <ExportVariable>
-       <VariableName>time</VariableName>
-     </ExportVariable>
    </ExportVariables>
    <ImportVariables>
    </ImportVariables>
