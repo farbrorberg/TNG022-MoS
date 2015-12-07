@@ -7,8 +7,8 @@
     <Version>4.2</Version>
 <IsMainModel>0</IsMainModel>
   <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>H:\TNG022_MoS\LAB1\LAB1 all.emx</LibraryPath>
-  <TimeStamp>2015-11-26 11:39:31</TimeStamp>
+    <LibraryPath>H:\TNG022-MoS\LAB1\LAB1 all.emx</LibraryPath>
+  <TimeStamp>2015-12-7 13:29:14</TimeStamp>
 </Description>
 </Information>';
  type Mainmodel
@@ -270,6 +270,7 @@ implementation_end;
 <ExpData>
   <VersionNumber>4.2</VersionNumber>
   <ModelProperties>
+    <ModelProperty section="tools\graph editor" entry="showGrid" value="0"/>
   </ModelProperties>
   <Variables>
    <Parameters>
